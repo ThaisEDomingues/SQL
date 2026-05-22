@@ -1,0 +1,32 @@
+-- cadastrar na tabelas de contas os seguintes casos 
+-- sunset_lover - 50 tulipas - 30 lirios  
+-- sky_wanderer - 40 rosas - 100 Girassol - 10 orquideas  
+-- neon_ninja - 50 rosas - 100 lirios - 100 orquides  
+-- starlight_dancer - 1 rosa  
+-- zen_master - 15 tulipas
+
+-- ex:
+-- o primeiro da sunset
+
+insert into contas(nome_da_conta, id_fornecedor, qtd_flor, id_flor) values
+('James1','bbfbf8b8-5085-11f1-9c12-b42e998ed715',50,'48e781c4-5085-11f1-9c12-b42e998ed715'),
+('James2','bbfbf8b8-5085-11f1-9c12-b42e998ed715',30,'48e7816c-5085-11f1-9c12-b42e998ed715'),
+('James3','bbfbfc0e-5085-11f1-9c12-b42e998ed715',50,'db555d33-5081-11f1-9c12-b42e998ed715'),
+('James4','bbfbfc0e-5085-11f1-9c12-b42e998ed715',100,'48e770f6-5085-11f1-9c12-b42e998ed715'),
+('James5','bbfbfc0e-5085-11f1-9c12-b42e998ed715',10,'48e7543f-5085-11f1-9c12-b42e998ed715'),
+('James6','bbfbfcc0-5085-11f1-9c12-b42e998ed715',50,'db555d33-5081-11f1-9c12-b42e998ed715'),
+('James7','bbfbfcc0-5085-11f1-9c12-b42e998ed715',100,'48e7816c-5085-11f1-9c12-b42e998ed715'),
+('James8','bbfbfcc0-5085-11f1-9c12-b42e998ed715',100,'48e7543f-5085-11f1-9c12-b42e998ed715'),
+('James9','bbfbfd43-5085-11f1-9c12-b42e998ed715',1,'db555d33-5081-11f1-9c12-b42e998ed715'),
+('James10','bbfbfdcd-5085-11f1-9c12-b42e998ed715',15,'48e781c4-5085-11f1-9c12-b42e998ed715');
+
+select * from contas;
+
+-- seleciona as tabelas a serem unidas
+select fornecedor.nome_fornecedor, flores.nome_flor, contas.qtd_flor
+-- seleciona de onde os dados seram retirados
+from contas
+-- une os dados 
+-- "inner join" é o comando que une as tabelas
+inner join fornecedor on contas.id_fornecedor = fornecedor.id_fornecedor
+inner join flores on contas.id_flor = flores.id_flor;

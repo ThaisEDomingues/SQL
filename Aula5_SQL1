@@ -1,0 +1,6 @@
+USE sales_db;
+
+SELECT Customers.CustomerName, SUM(orders.Total) AS TotalSales
+FROM Orders
+JOIN Customers ON orders.CustomerID = Customers.CustomerID
+GROUP BY Customers.CustomerName;

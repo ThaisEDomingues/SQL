@@ -1,0 +1,8 @@
+USE sales_db;
+
+-- select * from products;
+-- select * from orders;
+
+SELECT Products.ProductName, SUM(Orders.Quantity) AS TotalQuantity
+FROM Orders
+JOIN Products ON orders.ProductID = products.ProductID GROUP BY Products.ProductName ORDER BY TotalQuantity DESC LIMIT 1;

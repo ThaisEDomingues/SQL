@@ -1,0 +1,9 @@
+USE sales_db;
+
+-- select * from  products;
+-- select * from orders;
+-- select * from customers;
+
+SELECT Products.ProductName, SUM(Orders.Total) AS TotalRevenue
+FROM Orders
+JOIN Products ON orders.ProductID = products.ProductID GROUP BY products.ProductName;

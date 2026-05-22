@@ -1,0 +1,33 @@
+create database mercado;
+use mercado;
+-- vamos criar duas tabelas e fazer elas se comunicarem
+
+-- Primeiro cria a tabela mãe, aquela que vai ser referenciada
+create table marcas (
+id_marcas varchar(36) default (uuid()) primary key,
+nome_marcas varchar(255),
+segmento varchar(255)
+);
+
+create table produtos(
+id_produtos varchar(36) default (uuid()) primary key,
+nome_produtos varchar(255) not null,
+preco decimal(10,2) not null,
+id_marcas varchar(36), -- o campo de id_marcas não é dessa tabela - ele é da tabela de marcas
+constraint fk_marca_produto
+foreign key (id_marcas) references marcas(id_marcas)
+
+-- Referencias são feitas apenas com chaves unicas
+-- Fazer referencia com "primary key" garante integridade do banco de dados  
+
+-- "CONSTRAINT" avisa que vai criar uma regra
+-- "fk_marca_produto" nome dado a nova regra
+-- "FOREIGN KEY (id_marcas)" chama a chave "id_marcas" nessa tabela
+-- "REFERENCES marcas(id_marcas)" A regra é que o valor digitado aqui deve referenciar (existir) na coluna "id_marcas" da tabela "marcas"
+
+-- Para visualizar as referencias, no menu superior, 
+-- clique em Database, Reverse Engineer ou aperte Ctrl+R
+-- De next até aparecer as tabelas e selecione a desejada
+-- De next e Execute. lá aparecerá os Diagramas de SQL
+-- mostrando todas as referencias 
+);

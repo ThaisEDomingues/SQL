@@ -1,0 +1,72 @@
+-- ATIVIDADE
+-- quero criar um banco de dados chamado floricultura
+-- criar uma tabela de contagem de flores por fornecedor
+-- tabelas:
+-- id_conta | nome_da_conta | fornecedor | quantidade_de_flores
+-- id_fornecedor | nome_fornecedor | cidade_fornecedor (padrão CAMPINAS)
+-- id_flor | nome_flor(padrão rosa)
+-- popular a tabela com dados
+
+
+create database Floricultura;
+use Floricultura;
+
+-- "default" ao popular a tabela e se a coluna não receber
+-- dados ela vai inserir o informado
+-- EX.: nome_flor varchar(100) default 'rosa'
+-- caso não tenha nada inserido no nome_flor, vai ser inserido 
+-- o dado 'rosa'
+
+create table flores(
+	id_flor varchar(36) default (uuid()) primary key,
+    nome_flor varchar(100) default 'rosa'
+);
+
+
+insert into flores () values ();
+-- como a linha acima não deu nenhum valor, ele vai aplicar
+-- todos os defaults da table flores
+
+select * from flores;
+
+create table fornecedor(
+	id_fornecedor varchar(36) default (uuid()) primary key, 
+	nome_fornecedor varchar(50) not null unique,
+	cidade_fornecedor varchar(20) default 'Campinas',
+    cnpj bigint default 123456
+);
+
+-- sempre que fizer uma referencia tem que ser pela primary key
+-- ela vai trazer todas as colunas e informações da tabela
+create table contas(
+	id_contas varchar(36) default(uuid()) primary key,
+    nome_da_conta varchar(255) not null unique,
+    id_fornecedor varchar(36),
+    qtd_flor decimal(10,2) not null,
+    id_flor varchar(36),
+    -- criar relações
+    foreign key (id_fornecedor) references fornecedor(id_fornecedor),
+    foreign key (id_flor) references flores(id_flor)
+    -- "foreign key()" informa a chave estrangeira entre ()
+    -- "references" busca a tabela(coluna)
+);
+
+-- populando com 3 flores e 5 fornecedores
+
+insert into flores (nome_flor) values
+	('Orquidea'),
+    ('Girassol'),
+    ('Margarida'),
+    ('lirio'),
+    ('Tulipa');
+
+select * from flores;
+
+insert into fornecedor(nome_fornecedor) values
+	('sunset_lover'),
+	('sky_wanderer'),
+	('neon_ninja'),
+	('starlight_dancer'),
+	('zen_master');
+    
+select * from fornecedor;

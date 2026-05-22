@@ -1,0 +1,11 @@
+USE sales_db;
+
+-- select * from  products;
+-- select * from orders;
+-- select * from customers;
+
+SELECT Customers.CustomerName, SUM(orders.Total) AS TotalSales
+FROM Orders
+JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+GROUP BY Customers.CustomerName
+ORDER BY TotalSales DESC LIMIT 3;
